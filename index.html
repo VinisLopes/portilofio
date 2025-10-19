@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vinicius Lopes - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <canvas id="background-canvas"></canvas>
+    <div id="tech-icons"></div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">Portfolio</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="#home" data-text="Início">Início</a></li>
+                <li><a href="#about" data-text="Sobre">Sobre</a></li>
+                <li><a href="#skills" data-text="Habilidades">Habilidades</a></li>
+                <li><a href="#certificates" data-text="Certificados">Certificados</a></li>
+                <li><a href="#projects" data-text="Projetos">Projetos</a></li>
+                <li><a href="#contact" data-text="Contato">Contato</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <p class="hero-greeting">Olá, eu sou</p>
+                    <h1 class="hero-name">
+                        <span class="name-line">Vinicius</span>
+                        <span class="name-line">Lopes</span>
+                    </h1>
+                    <div class="hero-title-container">
+                        <p class="hero-title">
+                            <span class="typing-text">Desenvolvedor Web</span>
+                            <span class="cursor-blink">|</span>
+                        </p>
+                    </div>
+                    <p class="hero-description">
+                        Transformando ideias em experiências digitais incríveis através de código limpo e design intuitivo.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn btn-primary">Ver Projetos</a>
+                        <a href="#contact" class="btn btn-secondary">Entre em Contato</a>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-down">
+                <span>Role para baixo</span>
+                <div class="scroll-arrow"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Sobre Mim</h2>
+                <div class="title-line"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-photo">
+                    <div class="photo-container">
+                        <img src="https://via.placeholder.com/300x300/8b5cf6/ffffff?text=VL" alt="Foto de Perfil Vinicius Lopes" id="about-profile-img">
+                    </div>
+                </div>
+                <div class="about-text">
+                    <div class="text-card">
+                        <p>Olá! Meu nome é <strong>Vinicius Lopes</strong> e tenho paixão por criar soluções digitais que fazem a diferença. Minha jornada no desenvolvimento web começou há alguns anos e desde então venho aprimorando minhas habilidades constantemente.</p>
+                        <p>Sou apaixonado por tecnologia, aprendizado contínuo e por resolver problemas complexos de forma criativa. Meu objetivo é criar aplicações que não apenas funcionem bem, mas que proporcionem experiências memoráveis aos usuários.</p>
+                    </div>
+
+                    <div class="about-cards-grid">
+                        <div class="about-card">
+                            <i class="fas fa-briefcase about-card-icon"></i>
+                            <h4>Experiência</h4>
+                            <p>+X anos</p>
+                            <p>Desenvolvedor Web</p>
+                        </div>
+
+                        <div class="about-card">
+                            <i class="fas fa-graduation-cap about-card-icon"></i>
+                            <h4>Formação</h4>
+                            <p>Sua Formação</p>
+                            <p>Sua Instituição</p>
+                        </div>
+
+                        <div class="about-card">
+                            <i class="fas fa-certificate about-card-icon"></i>
+                            <h4>Certificados</h4>
+                            <p>Principais Certificados</p>
+                            <p>(Ver seção Certificados)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section skills">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Habilidades</h2>
+                <div class="title-line"></div>
+            </div>
+            <div class="skills-content">
+
+                <div class="skill-category-group">
+                    <h3 class="category-title">Frontend</h3>
+                    <div class="skill-icon-grid">
+                        <div class="skill-icon-item"><i class="fa-brands fa-html5"></i><span>HTML5</span></div>
+                        <div class="skill-icon-item"><i class="fa-brands fa-css3-alt"></i><span>CSS3</span></div>
+                        <div class="skill-icon-item"><i class="fa-brands fa-js"></i><span>JavaScript</span></div>
+                        <div class="skill-icon-item"><i class="fa-brands fa-react"></i><span>React</span></div>
+                        <div class="skill-icon-item"><i class="fa-brands fa-vuejs"></i><span>Vue.js</span></div>
+                        <div class="skill-icon-item"><i class="fa-brands fa-angular"></i><span>Angular</span></div>
+                    </div>
+                </div>
+
+                <div class="skill-category-group">
+                    <h3 class="category-title">Backend</h3>
+                    <div class="skill-icon-grid">
+                        <div class="skill-icon-item"><i class="fa-brands fa-node-js"></i><span>Node.js</span></div>
+                        <div class="skill-icon-item"><i class="fa-brands fa-python"></i><span>Python</span></div>
+                        <div class="skill-icon-item"><i class="fa-brands fa-java"></i><span>Java</span></div>
+                        <div class="skill-icon-item"><i class="fa-brands fa-php"></i><span>PHP</span></div>
+                    </div>
+                </div>
+
+                <div class="skill-category-group">
+                    <h3 class="category-title">Ferramentas & DevOps</h3>
+                    <div class="skill-icon-grid">
+                        <div class="skill-icon-item"><i class="fa-brands fa-git-alt"></i><span>Git</span></div>
+                        <div class="skill-icon-item"><i class="fa-brands fa-github"></i><span>GitHub</span></div>
+                        <div class="skill-icon-item"><i class="fa-brands fa-docker"></i><span>Docker</span></div>
+                        <div class="skill-icon-item"><i class="fa-brands fa-aws"></i><span>AWS</span></div>
+                        <div class="skill-icon-item"><i class="fa-brands fa-figma"></i><span>Figma</span></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="certificates" class="section certificates">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Certificados</h2>
+                <div class="title-line"></div>
+            </div>
+            <div class="certificates-grid" id="certificatesGrid">
+                <!-- Os certificados serão inseridos aqui via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Projetos</h2>
+                <div class="title-line"></div>
+            </div>
+            <div class="projects-grid">
+
+                <div class="project-card"
+                     data-project-id="nosso-amor"
+                     data-modal-title="Nosso Amor"
+                     data-modal-description="Uma aplicação web interativa que calcula e exibe o tempo de relacionamento entre duas pessoas, celebrando datas importantes e oferecendo uma contagem regressiva para aniversários e marcos. Ideal para casais que desejam acompanhar sua jornada juntos."
+                     data-modal-tech="HTML,CSS,JavaScript"
+                     data-modal-repo="https://github.com/VinisLopes/Contador-do-Amor"
+                     data-modal-live="https://nosso-contadorr.netlify.app/">
+
+                    <div class="project-content">
+                        <h3 class="project-title">Nosso Amor</h3>
+                        <p class="project-description">Um contador de relacionamento simples para celebrar datas especiais e momentos.</p>
+                        <ul class="project-tech-list">
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>JavaScript</li>
+                        </ul>
+                        <div class="project-links">
+                            <a href="https://github.com/VinisLopes/Contador-do-Amor" target="_blank" class="project-card-btn">
+                                Repositório
+                            </a>
+                            <a href="https://nosso-contadorr.netlify.app/" target="_blank" class="project-card-btn">
+                                Ver Aplicação
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card"
+                     data-project-id="torneio-biblico"
+                     data-modal-title="XLV Torneio Bíblico"
+                     data-modal-description="Página informativa e de inscrição desenvolvida para o 45º Torneio Bíblico da Arquidiocese de Sorocaba. O site fornece detalhes sobre o evento, cronograma, regulamento e permite que os participantes se inscrevam online de forma simples e rápida."
+                     data-modal-tech="HTML,CSS,Netlify"
+                     data-modal-repo="https://github.com/VinisLopes/site-confra-torneio-biblico"
+                     data-modal-live="https://confra-torneio-biblico.netlify.app/">
+
+                    <div class="project-content">
+                        <h3 class="project-title">XLV Torneio Bíblico</h3>
+                        <p class="project-description">Página de inscrição e informações para o evento do Torneio Bíblico da Arquidiocese.</p>
+                        <ul class="project-tech-list">
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>Netlify</li>
+                        </ul>
+                        <div class="project-links">
+                            <a href="https://github.com/VinisLopes/site-confra-torneio-biblico" target="_blank" class="project-card-btn">
+                                Repositório
+                            </a>
+                            <a href="https://confra-torneio-biblico.netlify.app/" target="_blank" class="project-card-btn">
+                                Ver Aplicação
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Entre em Contato</h2>
+            </div>
+            <div class="contact-content">
+                <p class="contact-text">Estou sempre aberto a novas oportunidades e colaborações. Se você tem um projeto em mente ou apenas quer dizer olá, sinta-se à vontade para entrar em contato!</p>
+
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <i class="fas fa-envelope contact-icon"></i>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <a href="mailto:seuemail@exemplo.com">seuemail@exemplo.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fas fa-map-marker-alt contact-icon"></i>
+                        <div class="contact-details">
+                            <h4>Localização</h4>
+                            <p>Sorocaba, SP - Brasil</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://github.com/seuperfil" target="_blank" aria-label="GitHub" class="social-link">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/seuperfil" target="_blank" aria-label="LinkedIn" class="social-link">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                    <a href="https://instagram.com/seuperfil" target="_blank" aria-label="Instagram" class="social-link">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Vinicius Lopes. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Modal para Certificados -->
+    <div id="certificate-modal" class="modal-overlay" tabindex="-1" aria-labelledby="certificate-modal-title" aria-modal="true" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title-section">
+                    <h2 id="certificate-modal-title">Certificado</h2>
+                </div>
+                <button class="modal-close" aria-label="Fechar modal">&times;</button>
+            </div>
+            <div class="certificate-modal-body">
+                <img id="certificate-modal-image" src="" alt="Certificado">
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Projetos -->
+    <div id="project-modal" class="modal-overlay" tabindex="-1" aria-labelledby="modal-title" aria-modal="true" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                 <div class="modal-title-section">
+                     <h2 id="modal-title">Título do Projeto</h2>
+                 </div>
+                 <button class="modal-close" aria-label="Fechar modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="modal-description">Descrição detalhada do projeto...</p>
+
+                <h4>Tecnologias Utilizadas</h4>
+                <ul id="modal-tech-list" class="modal-tech">
+                </ul>
+
+                 <div class="modal-links">
+                    <a href="#" id="modal-repo-link" target="_blank" class="modal-link-btn">
+                        <i class="fa-brands fa-github"></i>
+                        <span>Repositório</span>
+                    </a>
+                    <a href="#" id="modal-live-link" target="_blank" class="modal-link-btn">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Ver Aplicação</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
