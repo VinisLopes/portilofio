@@ -440,10 +440,10 @@ body {
     align-items: start;
 }
 
-/* CORREÇÃO PRINCIPAL: Ajustando o Grid para forçar o esticamento da coluna de conteúdo */
+/* CORREÇÃO PRINCIPAL: Ajustando o Grid para telas grandes */
 @media (min-width: 968px) {
     .about-content {
-        /* Define a coluna da foto com largura fixa e a coluna do conteúdo com 1fr (flexível) */
+        /* Mantém a foto em 300px e o conteúdo em 1fr */
         grid-template-columns: 300px 1fr; 
         gap: 2.5rem; 
     }
@@ -453,14 +453,6 @@ body {
     position: relative;
     display: flex;
     justify-content: center;
-    
-    /* NOVO: Faz a foto ocupar a primeira coluna, na horizontal */
-    grid-column: 1 / 2;
-    /* NOVO: Faz a foto ocupar as duas linhas, na vertical, para cobrir o espaço */
-    grid-row: 1 / span 2; 
-    
-    /* NOVO: Alinha a foto à esquerda da primeira coluna */
-    justify-self: start; 
 }
 
 .photo-container {
@@ -492,12 +484,10 @@ body {
 }
 
 .about-text {
-    /* Faz o texto começar na segunda coluna e se estender até o final da grade */
-    grid-column: 2 / -1; 
-    grid-row: 1 / 2; /* Garante que fique na primeira linha vertical do grid */
-
+    /* Força o container de texto/cards a usar 100% da largura da coluna do Grid */
     width: 100%; 
-    max-width: none; 
+    max-width: none; /* Remove qualquer limite herdado que impeça o esticamento */
+    /* Garante que o about-text não tenha margens laterais automáticas */
     margin: 0; 
     justify-self: start;
 }
@@ -531,22 +521,30 @@ body {
 /* * ATUALIZAÇÃO FINAL: ALINHAMENTO E ESTICAMENTO DOS CARDS */
 .about-cards-grid {
     display: grid;
+    /* Define 3 colunas de largura igual (1fr) */
     grid-template-columns: repeat(3, 1fr); 
     gap: 1.5rem;
     
-    /* * * * NOVO AJUSTE CRUCIAL: ALINHAMENTO COM A FOTO * * * */
-    /* Remove o padding lateral que alinhava com o texto */
+    /* Limpeza de Padding */
     padding: 0; 
-    
-    /* Adiciona margem negativa na esquerda para puxar o grid 
-       e estender o primeiro card para a esquerda. */
-    /* Este valor é um ajuste fino, tente começar com -340px (300px foto + 40px gap) */
-    margin-left: -340px; 
-    
-    /* Zera margem da direita para manter o esticamento */
-    margin-right: 0; 
     margin-bottom: 3rem; 
+    
+    /* NOVO: A margem negativa para desktop deve estar DENTRO de uma media query */
+    margin-left: 0; 
+    margin-right: 0;
 }
+
+/* * * * REGRA ESPECÍFICA PARA DESKTOP (ALINHAMENTO COM FOTO) * * * */
+@media (min-width: 968px) {
+    .about-cards-grid {
+        /* A margem negativa SÓ é aplicada em telas grandes (desktop) */
+        /* Valor de -340px (300px da foto + 40px do gap) */
+        margin-left: -340px; 
+        margin-right: 0; 
+    }
+}
+/* * * * FIM DA REGRA ESPECÍFICA * * * */
+
 
 .about-card {
     background: var(--bg-secondary);
@@ -1046,8 +1044,6 @@ body {
     transform: scale(0.9) translateY(10px);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
     opacity: 0;
-    display: flex;
-    flex-direction: column;
 }
 
 .modal-overlay.active .modal-content {
@@ -1402,6 +1398,8 @@ body {
 
     /* Ajuste para telas médias (968px ou menos) */
     .about-cards-grid {
+        /* Desfazemos a margem negativa com margin: 0 auto; */
+        margin: 0 auto 3rem auto;
         grid-template-columns: repeat(2, 1fr); 
     }
     
