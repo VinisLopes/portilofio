@@ -731,7 +731,7 @@ function initializePortfolio() {
     const typingElement = document.querySelector('.typing-text');
     if (typingElement) {
         new TypingEffect(typingElement,
-            ['Desenvolvedor Web', 'Apaixonado por Código', 'Criador de Soluções'],
+            ['Desenvolvedor Web', 'Criador de Soluções'],
             120,
             2200
         );

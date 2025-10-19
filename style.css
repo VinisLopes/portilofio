@@ -440,9 +440,12 @@ body {
     align-items: start;
 }
 
+/* CORREÇÃO PRINCIPAL: Ajustando o Grid para forçar o esticamento da coluna de conteúdo */
 @media (min-width: 968px) {
     .about-content {
-        grid-template-columns: 300px 1fr;
+        /* Define a coluna da foto com largura fixa e a coluna do conteúdo com 1fr (flexível) */
+        grid-template-columns: 300px 1fr; 
+        gap: 2.5rem; 
     }
 }
 
@@ -450,6 +453,14 @@ body {
     position: relative;
     display: flex;
     justify-content: center;
+    
+    /* NOVO: Faz a foto ocupar a primeira coluna, na horizontal */
+    grid-column: 1 / 2;
+    /* NOVO: Faz a foto ocupar as duas linhas, na vertical, para cobrir o espaço */
+    grid-row: 1 / span 2; 
+    
+    /* NOVO: Alinha a foto à esquerda da primeira coluna */
+    justify-self: start; 
 }
 
 .photo-container {
@@ -480,11 +491,23 @@ body {
     transform: scale(1.05);
 }
 
+.about-text {
+    /* Faz o texto começar na segunda coluna e se estender até o final da grade */
+    grid-column: 2 / -1; 
+    grid-row: 1 / 2; /* Garante que fique na primeira linha vertical do grid */
+
+    width: 100%; 
+    max-width: none; 
+    margin: 0; 
+    justify-self: start;
+}
+
 .text-card {
     background: var(--bg-secondary);
     border: 1px solid var(--border-color);
     border-radius: 1rem;
-    padding: 2.5rem;
+    /* Mantém o padding de 2.5rem para o texto interno */
+    padding: 2.5rem; 
     box-shadow: var(--shadow-lg);
     margin-bottom: 3rem;
 }
@@ -505,10 +528,24 @@ body {
     font-weight: 600;
 }
 
+/* * ATUALIZAÇÃO FINAL: ALINHAMENTO E ESTICAMENTO DOS CARDS */
 .about-cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(3, 1fr); 
     gap: 1.5rem;
+    
+    /* * * * NOVO AJUSTE CRUCIAL: ALINHAMENTO COM A FOTO * * * */
+    /* Remove o padding lateral que alinhava com o texto */
+    padding: 0; 
+    
+    /* Adiciona margem negativa na esquerda para puxar o grid 
+       e estender o primeiro card para a esquerda. */
+    /* Este valor é um ajuste fino, tente começar com -340px (300px foto + 40px gap) */
+    margin-left: -340px; 
+    
+    /* Zera margem da direita para manter o esticamento */
+    margin-right: 0; 
+    margin-bottom: 3rem; 
 }
 
 .about-card {
@@ -520,6 +557,9 @@ body {
     transition: var(--transition);
     opacity: 0;
     transform: translateY(30px);
+    /* Adiciona posição relativa para funcionar com o card-link-overlay */
+    position: relative; 
+    cursor: pointer; 
 }
 
 .about-card:hover {
@@ -545,6 +585,33 @@ body {
     color: var(--text-muted);
     line-height: 1.4;
 }
+
+/* NOVOS ESTILOS PARA O CARD DE CONTATO */
+
+/* Estilo para o texto clicável no card de contato */
+.about-card .card-link-text {
+    color: var(--accent);
+    font-weight: 600;
+    margin-top: 0.5rem;
+    transition: var(--transition);
+}
+
+.about-card:hover .card-link-text {
+    text-decoration: underline;
+}
+
+/* Cria uma área clicável invisível que cobre todo o card */
+.card-link-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* FIM DOS ESTILOS DO CARD DE CONTATO */
+
 
 .skills {
     background: var(--bg-secondary);
@@ -1333,8 +1400,16 @@ body {
         flex-grow: 1;
     }
 
+    /* Ajuste para telas médias (968px ou menos) */
     .about-cards-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr); 
+    }
+    
+    @media (max-width: 600px) {
+        /* Garante que volte para 1 coluna em telas muito pequenas */
+        .about-cards-grid {
+            grid-template-columns: 1fr;
+        }
     }
 
     .hero-name {
