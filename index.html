@@ -94,17 +94,30 @@
                         <div class="about-card">
                             <i class="fas fa-graduation-cap about-card-icon"></i>
                             <h4>Formação</h4>
-                            <p>Ensino Superior em andamento em Ciências da Computação na Universidade UNIP em Sorocaba</p>
+                            <p>Cursando Ensino Superior em Ciências da Computação na Universidade UNIP em Sorocaba</p>
                         </div>
 
                         <div class="about-card">
                             <i class="fas fa-paper-plane about-card-icon"></i>
                             <h4>Contato</h4>
-                            <p>Interessado em um projeto ou oportunidade?</p>
-                            <p class="card-link-text">Clique aqui para entrar em contato.</p>
-                            <a href="#contact" class="card-link-overlay" aria-label="Entrar em Contato"></a>
+                            <p>Interessado em um projeto ou oportunidade</p>
+                            <div class="contact-card-buttons-full">
+                                
+                                <a href="https://github.com/VinisLopes" target="_blank" class="btn btn-primary btn-contact-card-full">
+                                    <i class="fab fa-github"></i> <span>GitHub</span>
+                                </a>
+                                
+                                <a href="URL_DO_SEU_LINKEDIN" target="_blank" class="btn btn-primary btn-contact-card-full">
+                                    <i class="fab fa-linkedin-in"></i> <span>LinkedIn</span>
+                                </a>
+                                
+                                <a href="https://www.instagram.com/_vlopes98" target="_blank" class="btn btn-primary btn-contact-card-full">
+                                    <i class="fab fa-instagram"></i> <span>Instagram</span>
+                                </a>
+                                
+                            </div>
                         </div>
-                    </div>
+                        </div>
                 </div>
             </div>
         </div>
@@ -162,8 +175,7 @@
                 <div class="title-line"></div>
             </div>
             <div class="certificates-grid" id="certificatesGrid">
-                <!-- Os certificados serão inseridos aqui via JavaScript -->
-            </div>
+                </div>
         </div>
     </section>
 
@@ -176,12 +188,12 @@
             <div class="projects-grid">
 
                 <div class="project-card"
-                     data-project-id="nosso-amor"
-                     data-modal-title="Nosso Amor"
-                     data-modal-description="Uma aplicação web interativa que calcula e exibe o tempo de relacionamento entre duas pessoas, celebrando datas importantes e oferecendo uma contagem regressiva para aniversários e marcos. Ideal para casais que desejam acompanhar sua jornada juntos."
-                     data-modal-tech="HTML,CSS,JavaScript"
-                     data-modal-repo="https://github.com/VinisLopes/Contador-do-Amor"
-                     data-modal-live="https://nosso-contadorr.netlify.app/">
+                    data-project-id="nosso-amor"
+                    data-modal-title="Nosso Amor"
+                    data-modal-description="Uma aplicação web interativa que calcula e exibe o tempo de relacionamento entre duas pessoas, celebrando datas importantes e oferecendo uma contagem regressiva para aniversários e marcos. Ideal para casais que desejam acompanhar sua jornada juntos."
+                    data-modal-tech="HTML,CSS,JavaScript"
+                    data-modal-repo="https://github.com/VinisLopes/Contador-do-Amor"
+                    data-modal-live="https://nosso-contadorr.netlify.app/">
 
                     <div class="project-content">
                         <h3 class="project-title">Nosso Amor</h3>
@@ -203,12 +215,12 @@
                 </div>
 
                 <div class="project-card"
-                     data-project-id="torneio-biblico"
-                     data-modal-title="XLV Torneio Bíblico"
-                     data-modal-description="Página informativa e de inscrição desenvolvida para o 45º Torneio Bíblico da Arquidiocese de Sorocaba. O site fornece detalhes sobre o evento, cronograma, regulamento e permite que os participantes se inscrevam online de forma simples e rápida."
-                     data-modal-tech="HTML,CSS,Netlify"
-                     data-modal-repo="https://github.com/VinisLopes/site-confra-torneio-biblico"
-                     data-modal-live="https://confra-torneio-biblico.netlify.app/">
+                    data-project-id="torneio-biblico"
+                    data-modal-title="XLV Torneio Bíblico"
+                    data-modal-description="Página informativa e de inscrição desenvolvida para o 45º Torneio Bíblico da Arquidiocese de Sorocaba. O site fornece detalhes sobre o evento, cronograma, regulamento e permite que os participantes se inscrevam online de forma simples e rápida."
+                    data-modal-tech="HTML,CSS,Netlify"
+                    data-modal-repo="https://github.com/VinisLopes/site-confra-torneio-biblico"
+                    data-modal-live="https://confra-torneio-biblico.netlify.app/">
 
                     <div class="project-content">
                         <h3 class="project-title">XLV Torneio Bíblico</h3>
@@ -257,18 +269,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="social-links">
-                    <a href="https://github.com/seuperfil" target="_blank" aria-label="GitHub" class="social-link">
-                        <i class="fa-brands fa-github"></i>
-                    </a>
-                    <a href="https://linkedin.com/in/seuperfil" target="_blank" aria-label="LinkedIn" class="social-link">
-                        <i class="fa-brands fa-linkedin"></i>
-                    </a>
-                    <a href="https://instagram.com/seuperfil" target="_blank" aria-label="Instagram" class="social-link">
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
-                </div>
             </div>
         </div>
     </section>
@@ -279,7 +279,6 @@
         </div>
     </footer>
 
-    <!-- Modal para Certificados -->
     <div id="certificate-modal" class="modal-overlay" tabindex="-1" aria-labelledby="certificate-modal-title" aria-modal="true" role="dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -294,14 +293,13 @@
         </div>
     </div>
 
-    <!-- Modal para Projetos -->
     <div id="project-modal" class="modal-overlay" tabindex="-1" aria-labelledby="modal-title" aria-modal="true" role="dialog">
         <div class="modal-content">
             <div class="modal-header">
-                 <div class="modal-title-section">
-                     <h2 id="modal-title">Título do Projeto</h2>
-                 </div>
-                 <button class="modal-close" aria-label="Fechar modal">&times;</button>
+                   <div class="modal-title-section">
+                       <h2 id="modal-title">Título do Projeto</h2>
+                   </div>
+                   <button class="modal-close" aria-label="Fechar modal">&times;</button>
             </div>
             <div class="modal-body">
                 <p id="modal-description">Descrição detalhada do projeto...</p>
@@ -310,16 +308,16 @@
                 <ul id="modal-tech-list" class="modal-tech">
                 </ul>
 
-                 <div class="modal-links">
-                    <a href="#" id="modal-repo-link" target="_blank" class="modal-link-btn">
-                        <i class="fa-brands fa-github"></i>
-                        <span>Repositório</span>
-                    </a>
-                    <a href="#" id="modal-live-link" target="_blank" class="modal-link-btn">
-                        <i class="fas fa-external-link-alt"></i>
-                        <span>Ver Aplicação</span>
-                    </a>
-                </div>
+                   <div class="modal-links">
+                        <a href="#" id="modal-repo-link" target="_blank" class="modal-link-btn">
+                            <i class="fa-brands fa-github"></i>
+                            <span>Repositório</span>
+                        </a>
+                        <a href="#" id="modal-live-link" target="_blank" class="modal-link-btn">
+                            <i class="fas fa-external-link-alt"></i>
+                            <span>Ver Aplicação</span>
+                        </a>
+                   </div>
             </div>
         </div>
     </div>

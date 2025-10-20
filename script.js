@@ -40,7 +40,7 @@ function renderCertificates() {
                     <button class="btn-view-certificate" data-title="${cert.title}" data-img-src="${cert.image}">
                         <i class="fas fa-eye"></i> Visualizar
                     </button>
-                    <button class="btn-download-certificate" data-cert-id="${cert.id}" data-file-name="${cert.fileName}">
+                    <button class="btn-download-certificate" data-cert-id="${cert.id}">
                         <i class="fas fa-download"></i> Baixar
                     </button>
                 </div>
@@ -58,26 +58,18 @@ function renderCertificates() {
 
     document.querySelectorAll('.btn-download-certificate').forEach(btn => {
         btn.addEventListener('click', function() {
-            downloadCertificate(this);
+            const certId = parseInt(this.dataset.certId);
+            const cert = certificates.find(c => c.id === certId);
+            if (cert) {
+                const link = document.createElement('a');
+                link.href = cert.image;
+                link.download = `${cert.fileName}.png`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
         });
     });
-}
-
-// ========== FUNÇÃO PARA BAIXAR CERTIFICADO ==========
-function downloadCertificate(button) {
-    const certId = parseInt(button.dataset.certId);
-    const fileName = button.dataset.fileName;
-    const cert = certificates.find(c => c.id === certId);
-    
-    if (cert) {
-        const link = document.createElement('a');
-        link.href = cert.image;
-        link.download = `${fileName}.png`;
-        link.style.display = 'none';
-        document.body.appendChild(link);
-        link.click();
-        setTimeout(() => document.body.removeChild(link), 100);
-    }
 }
 
 // ===== BACKGROUND ANIMATION =====
@@ -404,7 +396,7 @@ class ScrollAnimations {
 }
 
 
-// ===== PROJECT MODAL LOGIC =====
+// ===== PROJECT MODAL LOGIC (Sua classe original) =====
 class Modal {
     constructor() {
         this.modalOverlay = document.getElementById('project-modal');
@@ -525,7 +517,7 @@ class Modal {
 }
 
 // ===================================
-// === CERTIFICATE MODAL CLASS ===
+// === NOVA CLASSE: CERTIFICATE MODAL ===
 // ===================================
 class CertificateModal {
     constructor() {
@@ -537,14 +529,12 @@ class CertificateModal {
 
         this.modalTitleEl = this.modalOverlay.querySelector('#certificate-modal-title');
         this.modalImageEl = this.modalOverlay.querySelector('#certificate-modal-image');
-        this.downloadBtn = this.modalOverlay.querySelector('#certificate-download-btn');
 
         if (!this.modalContent || !this.modalCloseBtn || !this.modalImageEl) return;
 
         this.originalBodyOverflow = document.body.style.overflow;
         this.originalHTMLOverflow = document.documentElement.style.overflow;
         this.boundTransitionEndHandler = this.transitionEndHandler.bind(this);
-        this.currentCertId = null;
 
         this.init();
     }
@@ -557,23 +547,6 @@ class CertificateModal {
                 this.closeModal();
             }
         });
-
-        if (this.downloadBtn) {
-            this.downloadBtn.addEventListener('click', () => {
-                if (this.currentCertId) {
-                    const cert = certificates.find(c => c.id === this.currentCertId);
-                    if (cert) {
-                        const link = document.createElement('a');
-                        link.href = cert.image;
-                        link.download = `${cert.fileName}.png`;
-                        link.style.display = 'none';
-                        document.body.appendChild(link);
-                        link.click();
-                        setTimeout(() => document.body.removeChild(link), 100);
-                    }
-                }
-            });
-        }
 
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && this.modalOverlay.classList.contains('active')) {
@@ -588,9 +561,6 @@ class CertificateModal {
 
         const title = button.dataset.title || 'Certificado';
         const imgSrc = button.dataset.imgSrc || '';
-        const certId = parseInt(button.dataset.certId) || null;
-
-        this.currentCertId = certId;
 
         if(this.modalTitleEl) this.modalTitleEl.textContent = title;
         if(this.modalImageEl) {
@@ -628,7 +598,7 @@ class CertificateModal {
     }
 }
 // ===================================
-// === FIM CERTIFICATE MODAL CLASS ===
+// === FIM DA NOVA CLASSE ===
 // ===================================
 
 

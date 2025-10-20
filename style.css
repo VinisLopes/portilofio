@@ -981,14 +981,8 @@ body {
     color: var(--accent);
 }
 
-.social-links {
-    display: flex;
-    gap: 1.5rem;
-    justify-content: center;
-}
-
 .social-link {
-    font-size: 1.5rem;
+    font-size: 1rem;
     color: var(--text-muted);
     transition: var(--transition);
 }
@@ -1417,4 +1411,38 @@ body {
     .hero-title {
         font-size: clamp(1.5rem, 5vw, 2rem);
     }
-}
+    /* Estilos para os botões sociais dentro do card de contato */
+.contact-card-buttons {
+    display: flex;
+    justify-content: center; /* Centraliza os botões */
+    gap: 0.5rem; /* Espaçamento entre os botões */
+    margin-top: 1rem; /* Espaçamento acima dos botões */
+    flex-wrap: wrap; /* Permite que os botões quebrem linha em telas pequenas */
+    }
+
+.btn-social {
+    background: transparent;
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    padding: 0.75rem; /* Ajuste o padding para fazer os botões menores */
+    border-radius: 50%; /* Botões redondos */
+    width: 40px; /* Define largura fixa para o círculo */
+    height: 40px; /* Define altura fixa para o círculo */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem; /* Tamanho do ícone */
+    transition: var(--transition);
+    }
+
+.btn-social:hover {
+    background: var(--accent);
+    color: var(--text-primary);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(139, 92, 246, 0.3);
+    }
+
+/* Garante que o texto original 'Clique aqui...' não apareça mais */
+.about-card .card-link-text {
+    display: none; 
+    }}
