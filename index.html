@@ -102,7 +102,6 @@
                             <h4>Certificados</h4>
                             <p>Neste local é possível ver alguns dos meus certificados:</p>
 
-                        <!-- 🔹 Botão "Ver Certificados" -->
                         <button id="open-certificates" class="btn btn-secondary" style="margin-top: 1.5rem;">
                             <i class="fas fa-certificate"></i> Ver Certificados
                         </button>
@@ -156,6 +155,7 @@
             </div>
         </div>
     </section>
+    
     <section id="projects" class="section projects">
         <div class="container">
             <div class="section-header">
@@ -222,37 +222,37 @@
         </div>
     </section>
 
-<section id="contact" class="section contact">
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">Entre em Contato</h2>
-        </div>
-        <div class="contact-content">
-            <p class="contact-text">Estou sempre aberto a novas oportunidades e colaborações. Se você tem um projeto em mente ou apenas quer dizer olá, sinta-se à vontade para entrar em contato!</p>
+    <section id="contact" class="section contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Entre em Contato</h2>
+            </div>
+            <div class="contact-content">
+                <p class="contact-text">Estou sempre aberto a novas oportunidades e colaborações. Se você tem um projeto em mente ou apenas quer dizer olá, sinta-se à vontade para entrar em contato!</p>
 
-            <div class="contact-details-card"> 
-                <i class="fas fa-paper-plane contact-details-icon"></i>
-                <h4 class="contact-details-title">Redes Sociais</h4>
-                <p class="contact-details-description">Interessado em um projeto ou oportunidade</p>
-                
-                <div class="contact-social-grid">
-                    <a href="https://github.com/VinisLopes" target="_blank" class="btn btn-primary contact-social-btn">
-                        <i class="fab fa-github"></i> <span>GitHub</span>
-                    </a>
-                    <a href="URL_DO_SEU_LINKEDIN" target="_blank" class="btn btn-primary contact-social-btn">
-                        <i class="fab fa-linkedin-in"></i> <span>LinkedIn</span>
-                    </a>
-                    <a href="mailto:viniciusldbb@gmail.com?subject=Oportunidade%20de%20Projeto%20no%20Portfolio" class="btn btn-primary contact-social-btn">
-                        <i class="fas fa-envelope"></i> <span>E-mail</span>
-                    </a>
-                    <a href="https://www.instagram.com/_vlopes98" target="_blank" class="btn btn-primary contact-social-btn">
-                        <i class="fab fa-instagram"></i> <span>Instagram</span>
-                    </a>
+                <div class="contact-details-card"> 
+                    <i class="fas fa-paper-plane contact-details-icon"></i>
+                    <h4 class="contact-details-title">Redes Sociais</h4>
+                    <p class="contact-details-description">Interessado em um projeto ou oportunidade</p>
+                    
+                    <div class="contact-social-grid">
+                        <a href="https://github.com/VinisLopes" target="_blank" class="btn btn-primary contact-social-btn">
+                            <i class="fab fa-github"></i> <span>GitHub</span>
+                        </a>
+                        <a href="URL_DO_SEU_LINKEDIN" target="_blank" class="btn btn-primary contact-social-btn">
+                            <i class="fab fa-linkedin-in"></i> <span>LinkedIn</span>
+                        </a>
+                        <a href="mailto:viniciusldbb@gmail.com?subject=Oportunidade%20de%20Projeto%20no%20Portfolio" class="btn btn-primary contact-social-btn">
+                            <i class="fas fa-envelope"></i> <span>E-mail</span>
+                        </a>
+                        <a href="https://www.instagram.com/_vlopes98" target="_blank" class="btn btn-primary contact-social-btn">
+                            <i class="fab fa-instagram"></i> <span>Instagram</span>
+                        </a>
+                    </div>
                 </div>
             </div>
-            </div>
-    </div>
-</section>
+        </div>
+    </section>
 
     <footer class="footer">
         <div class="container">
@@ -260,27 +260,31 @@
         </div>
     </footer>
 
-    <div id="certificate-modal" class="modal-overlay" tabindex="-1" aria-labelledby="certificate-modal-title" aria-modal="true" role="dialog">
+    <!-- Modal de Lista de Certificados -->
+    <div id="certificates-list-modal" class="modal-overlay" tabindex="-1" aria-labelledby="certificates-list-title" aria-modal="true" role="dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <div class="modal-title-section">
-                    <h2 id="certificate-modal-title">Certificado</h2>
+                    <h2 id="certificates-list-title">Meus Certificados</h2>
                 </div>
                 <button class="modal-close" aria-label="Fechar modal">&times;</button>
             </div>
-            <div class="certificate-modal-body">
-                <img id="certificate-modal-image" src="" alt="Certificado">
+            <div class="modal-body">
+                <div class="certificates-grid" id="certificatesGrid">
+                    <!-- Os certificados serão inseridos aqui via JavaScript -->
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- Modal de Projeto -->
     <div id="project-modal" class="modal-overlay" tabindex="-1" aria-labelledby="modal-title" aria-modal="true" role="dialog">
         <div class="modal-content">
             <div class="modal-header">
-                     <div class="modal-title-section">
-                         <h2 id="modal-title">Título do Projeto</h2>
-                     </div>
-                     <button class="modal-close" aria-label="Fechar modal">&times;</button>
+                <div class="modal-title-section">
+                    <h2 id="modal-title">Título do Projeto</h2>
+                </div>
+                <button class="modal-close" aria-label="Fechar modal">&times;</button>
             </div>
             <div class="modal-body">
                 <p id="modal-description">Descrição detalhada do projeto...</p>
@@ -289,16 +293,16 @@
                 <ul id="modal-tech-list" class="modal-tech">
                 </ul>
 
-                     <div class="modal-links">
-                          <a href="#" id="modal-repo-link" target="_blank" class="modal-link-btn">
-                              <i class="fa-brands fa-github"></i>
-                              <span>Repositório</span>
-                          </a>
-                          <a href="#" id="modal-live-link" target="_blank" class="modal-link-btn">
-                              <i class="fas fa-external-link-alt"></i>
-                              <span>Ver Aplicação</span>
-                          </a>
-                     </div>
+                <div class="modal-links">
+                    <a href="#" id="modal-repo-link" target="_blank" class="modal-link-btn">
+                        <i class="fa-brands fa-github"></i>
+                        <span>Repositório</span>
+                    </a>
+                    <a href="#" id="modal-live-link" target="_blank" class="modal-link-btn">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Ver Aplicação</span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

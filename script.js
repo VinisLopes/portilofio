@@ -2,10 +2,10 @@
 const certificates = [
     {
         id: 1,
-        title: "React Avançado",
-        issuer: "UDEMY",
-        image: "https://via.placeholder.com/400x300?text=React+Avançado",
-        fileName: "certificado-react-avancado"
+        title: "Industria 4.0",
+        issuer: "SENAI",
+        pdf: "certificados/Industria4.0.pdf",
+        fileName: "certificado-industria-4-0"
     },
     {
         id: 2,
@@ -22,55 +22,6 @@ const certificates = [
         fileName: "certificado-aws-cloud"
     }
 ];
-
-// ========== RENDERIZAR CERTIFICADOS ==========
-function renderCertificates() {
-    const certificatesGrid = document.getElementById('certificatesGrid');
-    if (!certificatesGrid) return;
-    
-    certificatesGrid.innerHTML = certificates.map(cert => `
-        <div class="certificate-card">
-            <div class="certificate-image-wrapper">
-                <img src="${cert.image}" alt="${cert.title}">
-            </div>
-            <div class="certificate-content">
-                <h4>${cert.title}</h4>
-                <p>${cert.issuer}</p>
-                <div class="certificate-links">
-                    <button class="btn-view-certificate" data-title="${cert.title}" data-img-src="${cert.image}">
-                        <i class="fas fa-eye"></i> Visualizar
-                    </button>
-                    <button class="btn-download-certificate" data-cert-id="${cert.id}">
-                        <i class="fas fa-download"></i> Baixar
-                    </button>
-                </div>
-            </div>
-        </div>
-    `).join('');
-
-    // Reattach event listeners após renderizar
-    document.querySelectorAll('.btn-view-certificate').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const certificateModal = new CertificateModal();
-            certificateModal.openModal(this);
-        });
-    });
-
-    document.querySelectorAll('.btn-download-certificate').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const certId = parseInt(this.dataset.certId);
-            const cert = certificates.find(c => c.id === certId);
-            if (cert) {
-                const link = document.createElement('a');
-                link.href = cert.image;
-                link.download = `${cert.fileName}.png`;
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            }
-        });
-    });
-}
 
 // ===== BACKGROUND ANIMATION =====
 class BackgroundAnimation {
@@ -396,7 +347,7 @@ class ScrollAnimations {
 }
 
 
-// ===== PROJECT MODAL LOGIC (Sua classe original) =====
+// ===== PROJECT MODAL LOGIC =====
 class Modal {
     constructor() {
         this.modalOverlay = document.getElementById('project-modal');
@@ -517,7 +468,7 @@ class Modal {
 }
 
 // ===================================
-// === NOVA CLASSE: CERTIFICATE MODAL ===
+// === CERTIFICATE MODAL (Individual) ===
 // ===================================
 class CertificateModal {
     constructor() {
@@ -597,10 +548,158 @@ class CertificateModal {
         document.body.style.overflow = this.originalBodyOverflow;
     }
 }
-// ===================================
-// === FIM DA NOVA CLASSE ===
-// ===================================
 
+// ===================================
+// === CERTIFICATES LIST MODAL ===
+// ===================================
+class CertificatesListModal {
+    constructor() {
+        this.modalOverlay = document.getElementById('certificates-list-modal');
+        if (!this.modalOverlay) return;
+
+        this.modalContent = this.modalOverlay.querySelector('.modal-content');
+        this.modalCloseBtn = this.modalOverlay.querySelector('.modal-close');
+        this.certificatesGrid = this.modalOverlay.querySelector('#certificatesGrid');
+
+        if (!this.modalContent || !this.modalCloseBtn) return;
+
+        this.originalBodyOverflow = document.body.style.overflow;
+        this.originalHTMLOverflow = document.documentElement.style.overflow;
+        this.boundTransitionEndHandler = this.transitionEndHandler.bind(this);
+
+        this.init();
+    }
+
+    init() {
+        // Fechar ao clicar no X
+        this.modalCloseBtn.addEventListener('click', () => this.closeModal());
+
+        // Fechar ao clicar fora do conteúdo
+        this.modalOverlay.addEventListener('click', (e) => {
+            if (e.target === this.modalOverlay) {
+                this.closeModal();
+            }
+        });
+
+        // Fechar com ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.modalOverlay.classList.contains('active')) {
+                this.closeModal();
+            }
+        });
+
+        // Adicionar listener ao botão "Ver Certificados"
+        const openBtn = document.getElementById('open-certificates');
+        if (openBtn) {
+            openBtn.addEventListener('click', () => this.openModal());
+        }
+    }
+
+    openModal() {
+        this.originalBodyOverflow = document.body.style.overflow;
+        this.originalHTMLOverflow = document.documentElement.style.overflow;
+
+        // Renderizar os certificados dentro do modal
+        this.renderCertificates();
+
+        document.documentElement.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden';
+
+        this.modalContent.style.transform = 'scale(0.95) translateY(10px)';
+        this.modalContent.style.opacity = '0';
+        this.modalOverlay.classList.add('active');
+        this.modalOverlay.focus();
+
+        requestAnimationFrame(() => {
+            this.modalContent.style.transform = 'scale(1) translateY(0)';
+            this.modalContent.style.opacity = '1';
+        });
+    }
+
+    closeModal() {
+        this.modalContent.removeEventListener('transitionend', this.boundTransitionEndHandler);
+
+        this.modalContent.style.transform = 'scale(0.95) translateY(10px)';
+        this.modalContent.style.opacity = '0';
+        this.modalContent.addEventListener('transitionend', this.boundTransitionEndHandler, { once: true });
+    }
+
+    transitionEndHandler() {
+        if (!this.modalOverlay.classList.contains('active')) return;
+        this.modalOverlay.classList.remove('active');
+        document.documentElement.style.overflow = this.originalHTMLOverflow;
+        document.body.style.overflow = this.originalBodyOverflow;
+    }
+
+    renderCertificates() {
+        if (!this.certificatesGrid) return;
+        
+        this.certificatesGrid.innerHTML = certificates.map(cert => `
+            <div class="certificate-card">
+                <div class="certificate-image-wrapper">
+                    <img src="${cert.image}" alt="${cert.title}">
+                </div>
+                <div class="certificate-content">
+                    <h4>${cert.title}</h4>
+                    <p>${cert.issuer}</p>
+                    <div class="certificate-links">
+                        <button class="btn-view-certificate" data-title="${cert.title}" data-img-src="${cert.image}">
+                            <i class="fas fa-eye"></i> Visualizar
+                        </button>
+                        <button class="btn-download-certificate" data-cert-id="${cert.id}">
+                            <i class="fas fa-download"></i> Baixar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+
+        // Reattach event listeners
+        this.attachCertificateEvents();
+    }
+
+attachCertificateEvents() {
+    // Botões de visualizar - abre PDF em nova aba
+    this.certificatesGrid.querySelectorAll('.btn-view-certificate').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const pdfUrl = this.dataset.pdf;
+            window.open(pdfUrl, '_blank');
+        });
+    });
+
+    // Botões de download
+    this.certificatesGrid.querySelectorAll('.btn-download-certificate').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const pdfUrl = this.dataset.pdf;
+            const filename = this.dataset.filename;
+            
+            const link = document.createElement('a');
+            link.href = pdfUrl;
+            link.download = `${filename}.pdf`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+    });
+
+
+        // Botões de download
+        this.certificatesGrid.querySelectorAll('.btn-download-certificate').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const certId = parseInt(this.dataset.certId);
+                const cert = certificates.find(c => c.id === certId);
+                if (cert) {
+                    const link = document.createElement('a');
+                    link.href = cert.image;
+                    link.download = `${cert.fileName}.png`;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                }
+            });
+        });
+    }
+}
 
 // ===== PROJECTS MANAGER =====
 class ProjectManager {
@@ -710,11 +809,9 @@ function initializePortfolio() {
     new ScrollAnimations();
     new Modal();
     new CertificateModal();
+    new CertificatesListModal(); // ← NOVA CLASSE ADICIONADA
     new ProjectManager(6);
     new TechIcons(25);
-
-    // Renderizar certificados
-    renderCertificates();
 }
 
 if (document.readyState === 'loading') {
@@ -722,4 +819,3 @@ if (document.readyState === 'loading') {
 } else {
     initializePortfolio();
 }
-

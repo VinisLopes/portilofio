@@ -440,10 +440,8 @@ body {
     align-items: start;
 }
 
-/* CORREÇÃO PRINCIPAL: Ajustando o Grid para telas grandes */
 @media (min-width: 968px) {
     .about-content {
-        /* Mantém a foto em 300px e o conteúdo em 1fr */
         grid-template-columns: 300px 1fr; 
         gap: 2.5rem; 
     }
@@ -484,7 +482,6 @@ body {
 }
 
 .about-text {
-    /* Força o container de texto/cards a usar 100% da largura da coluna do Grid */
     width: 100%; 
     max-width: none; 
     margin: 0; 
@@ -495,7 +492,6 @@ body {
     background: var(--bg-secondary);
     border: 1px solid var(--border-color);
     border-radius: 1rem;
-    /* Mantém o padding de 2.5rem para o texto interno */
     padding: 2.5rem; 
     box-shadow: var(--shadow-lg);
     margin-bottom: 3rem;
@@ -517,31 +513,22 @@ body {
     font-weight: 600;
 }
 
-/* * ATUALIZAÇÃO FINAL: ALINHAMENTO E ESTICAMENTO DOS CARDS */
 .about-cards-grid {
     display: grid;
-    /* Define 3 colunas de largura igual (1fr) */
     grid-template-columns: repeat(3, 1fr); 
     gap: 1.5rem;
-    
-    /* Limpeza de Padding e Margem */
     padding: 0; 
     margin-bottom: 3rem; 
     margin-left: 0; 
     margin-right: 0;
 }
 
-/* * * * REGRA ESPECÍFICA PARA DESKTOP (ALINHAMENTO COM FOTO) * * * */
 @media (min-width: 968px) {
     .about-cards-grid {
-        /* A margem negativa SÓ é aplicada em telas grandes (desktop) */
-        /* Valor de -340px (300px da foto + 40px do gap) */
         margin-left: -340px; 
         margin-right: 0; 
     }
 }
-/* * * * FIM DA REGRA ESPECÍFICA * * * */
-
 
 .about-card {
     background: var(--bg-secondary);
@@ -552,7 +539,6 @@ body {
     transition: var(--transition);
     opacity: 0;
     transform: translateY(30px);
-    /* Adiciona posição relativa para funcionar com o card-link-overlay */
     position: relative; 
     cursor: pointer; 
 }
@@ -581,11 +567,9 @@ body {
     line-height: 1.4;
 }
 
-/* Removendo a linha extra de parágrafo no ABOUT CARD para a imagem caber melhor */
 .about-card p:last-of-type {
     margin-bottom: 0;
 }
-
 
 .skills {
     background: var(--bg-secondary);
@@ -709,6 +693,33 @@ body {
     transform: scale(1.05);
 }
 
+.certificate-pdf-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    gap: 0.75rem;
+}
+
+.certificate-pdf-preview i {
+    font-size: 4rem;
+    color: #ef4444;
+    transition: var(--transition);
+}
+
+.certificate-pdf-preview span {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    letter-spacing: 2px;
+}
+
+.certificate-card:hover .certificate-pdf-preview i {
+    transform: scale(1.1);
+    color: #dc2626;
+}
+
 .certificate-content {
     padding: 1.5rem;
     display: flex;
@@ -755,6 +766,7 @@ body {
     flex: 1;
     justify-content: center;
     font-family: var(--font-primary);
+    background: none;
 }
 
 .btn-view-certificate {
@@ -889,9 +901,6 @@ body {
     box-shadow: 0 5px 10px rgba(139, 92, 246, 0.3);
 }
 
-/* ========================================================= */
-/* Contato Section (CORRIGIDO PARA O LAYOUT 2x2 ESTÁVEL)     */
-/* ========================================================= */
 .contact {
     background: var(--bg-primary);
 }
@@ -909,7 +918,6 @@ body {
     margin-bottom: 2.5rem; 
 }
 
-/* Novo estilo para o CARD PRINCIPAL de contato (que envolve tudo) */
 .contact-details-card {
     background: var(--bg-secondary);
     border: 1px solid var(--border-color);
@@ -918,31 +926,25 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
-    /* CORREÇÃO CHAVE: Limita a largura para garantir 2 colunas no desktop */
     max-width: 420px; 
     margin: 0 auto;
-    
     gap: 0.5rem; 
     transition: var(--transition);
     box-shadow: var(--shadow-lg); 
 }
 
-/* Hover no card de detalhes */
 .contact-details-card:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-xl);
     border-color: var(--accent);
 }
 
-/* Estilo do Ícone de avião de papel no topo do card */
 .contact-details-icon {
     font-size: 2.5rem; 
     color: var(--accent);
     margin-bottom: 0.5rem;
 }
 
-/* Estilo do Título "Contato" dentro do card */
 .contact-details-title {
     font-size: 1.75rem; 
     color: var(--text-primary);
@@ -950,7 +952,6 @@ body {
     font-weight: 700;
 }
 
-/* Estilo da Descrição "Interessado..." dentro do card */
 .contact-details-description {
     color: var(--text-muted);
     font-size: 1rem;
@@ -959,25 +960,19 @@ body {
     max-width: 100%; 
 }
 
-/* Container da GRADE 2x2 para os botões sociais */
 .contact-social-grid {
     display: grid;
-    /* CORREÇÃO CHAVE: Força a exibição em 2 colunas com uma largura mínima razoável */
     grid-template-columns: repeat(2, minmax(150px, 1fr)); 
-    gap: 1rem; /* Aumentei o gap */
+    gap: 1rem;
     width: 100%; 
 }
 
-/* Estilo individual dos botões sociais */
 .contact-social-btn {
     display: flex;
     flex-direction: column; 
     align-items: center;
     justify-content: center;
-    
-    /* CORREÇÃO: Ajuste do padding para parecer mais quadrado */
     padding: 1.5rem 0.5rem; 
-    
     border-radius: 0.75rem; 
     white-space: normal;
     text-align: center;
@@ -997,30 +992,16 @@ body {
     border-color: #7c3aed;
 }
 
-/* Estilo dos Ícones dentro dos botões */
 .contact-social-btn i {
     font-size: 1.5rem; 
     margin-bottom: 0.25rem; 
 }
 
-/* Estilo do Texto (span) dentro dos botões */
 .contact-social-btn span {
     font-size: 0.85rem; 
     font-weight: 500;
     margin-top: 0.25rem;
 }
-
-/* === Estilos Antigos (Mantidos ocultos) === */
-/* Certifique-se de que a estrutura antiga não está mais no seu HTML, pois estas regras irão ocultá-la. */
-.contact-grid,
-.contact-card,
-.contact-icon,
-.contact-details h4,
-.contact-details p,
-.contact-details a {
-    display: none;
-}
-
 
 .footer {
     padding: 2rem 0;
@@ -1092,7 +1073,7 @@ body {
 }
 
 #modal-title,
-#certificate-modal-title {
+#certificates-list-title {
     font-size: 1.75rem;
     font-weight: 700;
     color: var(--text-primary);
@@ -1127,6 +1108,7 @@ body {
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: var(--primary) var(--bg-tertiary);
+    max-height: 70vh;
 }
 
 .modal-body::-webkit-scrollbar {
@@ -1210,126 +1192,6 @@ body {
     border-color: #7c3aed;
 }
 
-.certificate-modal-body {
-    padding: 1rem;
-    background: #0a0e1a;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    flex-grow: 1;
-}
-
-#certificate-modal-image {
-    max-width: 100%;
-    max-height: 75vh;
-    object-fit: contain;
-    border-radius: 0.5rem;
-    border: 1px solid var(--border-color);
-}
-
-.certificate-modal-footer {
-    padding: 1.5rem 2rem;
-    border-top: 1px solid var(--border-color);
-    background: var(--bg-secondary);
-    display: flex;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.certificate-action-btn {
-    padding: 0.75rem 2rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-
-.certificate-action-btn i {
-    font-size: 1rem;
-}
-
-.certificate-action-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(139, 92, 246, 0.4);
-}
-
-@media (max-width: 768px) {
-    .modal-header,
-    .modal-body {
-        padding: 1.5rem;
-    }
-
-    #modal-title,
-    #certificate-modal-title {
-        font-size: 1.5rem;
-    }
-
-    .modal-links {
-        flex-direction: column;
-    }
-
-    .modal-link-btn {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .modal-body h4 {
-        margin-bottom: 1rem;
-    }
-
-    .modal-description,
-    .modal-tech,
-    .modal-links {
-        margin-bottom: 2rem;
-        margin-top: 0;
-    }
-
-    .modal-links {
-        margin-top: 2rem;
-    }
-
-    .certificate-modal-body {
-        padding: 0.5rem;
-    }
-
-    #certificate-modal-image {
-        max-height: 80vh;
-    }
-
-    .certificate-modal-footer {
-        padding: 1rem 1.5rem;
-    }
-
-    .certificate-action-btn {
-        width: 100%;
-        justify-content: center;
-        padding: 0.75rem 1.5rem;
-    }
-
-    /* Ajuste para mobile (mobile first) */
-    .contact-details-card {
-        padding: 1.5rem;
-    }
-
-    .contact-social-grid {
-        /* Em telas muito pequenas, pode voltar para 1 coluna */
-        grid-template-columns: 1fr; 
-        gap: 0.75rem;
-    }
-
-    .contact-social-btn {
-        padding: 1rem 0.5rem;
-    }
-}
-
-@media (min-width: 450px) and (max-width: 768px) {
-     /* Garante 2x2 em telas de celular maiores (450px em diante) */
-    .contact-social-grid {
-        grid-template-columns: repeat(2, 1fr); 
-    }
-}
-
-
 #tech-icons {
     position: fixed;
     top: 0;
@@ -1357,6 +1219,66 @@ body {
 
 .project-hidden {
     display: none;
+}
+
+@media (max-width: 768px) {
+    .modal-header,
+    .modal-body {
+        padding: 1.5rem;
+    }
+
+    #modal-title,
+    #certificates-list-title {
+        font-size: 1.5rem;
+    }
+
+    .modal-links {
+        flex-direction: column;
+    }
+
+    .modal-link-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .modal-body h4 {
+        margin-bottom: 1rem;
+    }
+
+    .modal-description,
+    .modal-tech,
+    .modal-links {
+        margin-bottom: 2rem;
+        margin-top: 0;
+    }
+
+    .modal-links {
+        margin-top: 2rem;
+    }
+
+    .contact-details-card {
+        padding: 1.5rem;
+    }
+
+    .contact-social-grid {
+        grid-template-columns: 1fr; 
+        gap: 0.75rem;
+    }
+
+    .contact-social-btn {
+        padding: 1rem 0.5rem;
+    }
+
+    .certificates-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+@media (min-width: 450px) and (max-width: 768px) {
+    .contact-social-grid {
+        grid-template-columns: repeat(2, 1fr); 
+    }
 }
 
 @media (max-width: 968px) {
@@ -1443,15 +1365,12 @@ body {
         flex-grow: 1;
     }
 
-    /* Ajuste para telas médias (968px ou menos) */
     .about-cards-grid {
-        /* Desfazemos a margem negativa com margin: 0 auto; */
         margin: 0 auto 3rem auto;
         grid-template-columns: repeat(2, 1fr); 
     }
     
     @media (max-width: 600px) {
-        /* Garante que volte para 1 coluna em telas muito pequenas */
         .about-cards-grid {
             grid-template-columns: 1fr;
         }
@@ -1464,4 +1383,32 @@ body {
     .hero-title {
         font-size: clamp(1.5rem, 5vw, 2rem);
     }
+/* ===== ESTILO PARA PREVIEW DE PDF ===== */
+    .certificate-pdf-preview {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+        gap: 0.75rem;
+    }
+
+    .certificate-pdf-preview i {
+        font-size: 4rem;
+        color: #ef4444;
+        transition: var(--transition);
+    }
+
+    .certificate-pdf-preview span {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--text-secondary);
+        letter-spacing: 2px;
+    }
+
+    .certificate-card:hover .certificate-pdf-preview i {
+        transform: scale(1.1);
+        color: #dc2626;
+    }
+
 }
