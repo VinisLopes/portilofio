@@ -1,25 +1,48 @@
+console.log("script.js carregado - VERSÃO FINAL 24/10 (com descrições)");
+
 // ========== DADOS DOS CERTIFICADOS ==========
 const certificates = [
+    // ----- CERTIFICADOS DE TESTE ADICIONADOS -----
+    {
+        id: 98,
+        title: "Exemplo Imagem (Teste)",
+        issuer: "TESTE",
+        image: "https://via.placeholder.com/400x300?text=Exemplo+de+Imagem",
+        fileName: "exemplo-imagem-teste",
+        description: "Este é um textinho de exemplo para o certificado em IMAGEM. Ele deve preencher o espaço."
+    },
+    {
+        id: 99,
+        title: "Exemplo PDF (Teste)",
+        issuer: "TESTE",
+        pdf: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+        fileName: "exemplo-pdf-teste",
+        description: "Este é um textinho de exemplo para o certificado em PDF. Ele deve preencher o espaço."
+    },
+    // ---------------------------------------------
     {
         id: 1,
         title: "Industria 4.0",
         issuer: "SENAI",
-        pdf: "certificados/Industria4.0.pdf",
-        fileName: "certificado-industria-4-0"
+        pdf: "Certificados/Industria 4.0.pdf",
+        fileName: "certificado-industria-4-0",
+        description: "Curso focado nos conceitos e tecnologias fundamentais da Indústria 4.0."
     },
     {
         id: 2,
         title: "Node.js Completo",
         issuer: "COURSERA",
         image: "https://via.placeholder.com/400x300?text=Node.js+Completo",
-        fileName: "certificado-nodejs-completo"
+        fileName: "certificado-nodejs-completo",
+        description: "Descrição de exemplo para o seu curso de Node.js."
     },
     {
         id: 3,
         title: "AWS Cloud Practitioner",
         issuer: "AMAZON WEB SERVICES",
         image: "https://via.placeholder.com/400x300?text=AWS+Cloud+Practitioner",
-        fileName: "certificado-aws-cloud"
+        fileName: "certificado-aws-cloud",
+        description: "Descrição de exemplo para sua certificação AWS."
     }
 ];
 
@@ -631,67 +654,86 @@ class CertificatesListModal {
         document.body.style.overflow = this.originalBodyOverflow;
     }
 
+    // ========== FUNÇÃO MODIFICADA ==========
     renderCertificates() {
-        if (!this.certificatesGrid) return;
+        console.log("Renderizando certificados...");
+        if (!this.certificatesGrid) {
+            console.error("ERRO: certificatesGrid não encontrado!");
+            return;
+        }
         
-        this.certificatesGrid.innerHTML = certificates.map(cert => `
-            <div class="certificate-card">
-                <div class="certificate-image-wrapper">
-                    <img src="${cert.image}" alt="${cert.title}">
-                </div>
-                <div class="certificate-content">
-                    <h4>${cert.title}</h4>
-                    <p>${cert.issuer}</p>
-                    <div class="certificate-links">
-                        <button class="btn-view-certificate" data-title="${cert.title}" data-img-src="${cert.image}">
-                            <i class="fas fa-eye"></i> Visualizar
-                        </button>
-                        <button class="btn-download-certificate" data-cert-id="${cert.id}">
-                            <i class="fas fa-download"></i> Baixar
-                        </button>
+        this.certificatesGrid.innerHTML = certificates.map(cert => {
+
+            // Lógica para definir os atributos de dados para o botão VISUALIZAR
+            const viewDataAttr = cert.pdf 
+                ? `data-pdf="${cert.pdf}"` 
+                : `data-img-src="${cert.image}"`;
+
+            return `
+                <div class="certificate-card">
+                    
+                    <div class="certificate-content">
+                        <h4>${cert.title}</h4>
+                        <p>${cert.issuer}</p>
+                        
+                        <p class="certificate-description">${cert.description || 'Descrição não disponível.'}</p>
+
+                        <div class="certificate-links">
+                            <button class="btn-view-certificate" data-title="${cert.title}" ${viewDataAttr}>
+                                <i class="fas fa-eye"></i> Visualizar
+                            </button>
+                            <button class="btn-download-certificate" data-cert-id="${cert.id}">
+                                <i class="fas fa-download"></i> Baixar
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        `).join('');
+            `;
+        }).join('');
 
-        // Reattach event listeners
+        // Reanexar os ouvintes de eventos
         this.attachCertificateEvents();
     }
 
-attachCertificateEvents() {
-    // Botões de visualizar - abre PDF em nova aba
-    this.certificatesGrid.querySelectorAll('.btn-view-certificate').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const pdfUrl = this.dataset.pdf;
-            window.open(pdfUrl, '_blank');
+    // ========== FUNÇÃO CORRIGIDA ==========
+    attachCertificateEvents() {
+        // Botões de visualizar - abre PDF ou Imagem em nova aba
+        this.certificatesGrid.querySelectorAll('.btn-view-certificate').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const pdfUrl = this.dataset.pdf;
+                const imgUrl = this.dataset.imgSrc;
+
+                if (pdfUrl) {
+                    // É um PDF, abre em nova aba
+                    window.open(pdfUrl, '_blank');
+                } else if (imgUrl) {
+                    // É uma imagem, abre em nova aba
+                    window.open(imgUrl, '_blank');
+                }
+            });
         });
-    });
 
-    // Botões de download
-    this.certificatesGrid.querySelectorAll('.btn-download-certificate').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const pdfUrl = this.dataset.pdf;
-            const filename = this.dataset.filename;
-            
-            const link = document.createElement('a');
-            link.href = pdfUrl;
-            link.download = `${filename}.pdf`;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        });
-    });
-
-
-        // Botões de download
+        // Botões de download (Versão corrigida e sem duplicidade)
         this.certificatesGrid.querySelectorAll('.btn-download-certificate').forEach(btn => {
             btn.addEventListener('click', function() {
                 const certId = parseInt(this.dataset.certId);
                 const cert = certificates.find(c => c.id === certId);
+                
                 if (cert) {
                     const link = document.createElement('a');
-                    link.href = cert.image;
-                    link.download = `${cert.fileName}.png`;
+                    
+                    if (cert.pdf) {
+                        // É um PDF
+                        link.href = cert.pdf;
+                        link.download = `${cert.fileName}.pdf`;
+                    } else if (cert.image) {
+                        // É uma imagem
+                        link.href = cert.image;
+                        link.download = `${cert.fileName}.png`; 
+                    } else {
+                        return; 
+                    }
+                    
                     document.body.appendChild(link);
                     link.click();
                     document.body.removeChild(link);
@@ -809,7 +851,7 @@ function initializePortfolio() {
     new ScrollAnimations();
     new Modal();
     new CertificateModal();
-    new CertificatesListModal(); // ← NOVA CLASSE ADICIONADA
+    new CertificatesListModal();
     new ProjectManager(6);
     new TechIcons(25);
 }

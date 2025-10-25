@@ -738,7 +738,17 @@ body {
     font-size: 0.9rem;
     color: var(--text-muted);
     text-transform: uppercase;
-    margin-bottom: auto;
+    margin-bottom: 0.5rem; /* MODIFICADO */
+}
+
+/* ===== NOVO ESTILO ADICIONADO ===== */
+.certificate-description {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-transform: none;
+    line-height: 1.6;
+    margin-bottom: auto; /* Empurra os botões para baixo */
+    font-weight: 400;
 }
 
 .certificate-links {
@@ -781,15 +791,18 @@ body {
     box-shadow: 0 5px 15px rgba(139, 92, 246, 0.3);
 }
 
+/* ===== ESTILO MODIFICADO ===== */
 .btn-download-certificate {
-    background: transparent;
-    color: var(--accent);
+    background: var(--accent);
+    color: white;
 }
 
+/* ===== ESTILO MODIFICADO ===== */
 .btn-download-certificate:hover {
-    background: rgba(139, 92, 246, 0.1);
+    background: #7c3aed;
+    border-color: #7c3aed;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(139, 92, 246, 0.2);
+    box-shadow: 0 5px 15px rgba(139, 92, 246, 0.3);
 }
 
 .projects {
@@ -1411,4 +1424,17 @@ body {
         color: #dc2626;
     }
 
+}
+
+/* =================================== */
+/* === CORREÇÃO MODAL CERTIFICADOS === */
+/* =================================== */
+
+/* Isto força os cards DENTRO DO MODAL 
+  a ficarem visíveis, sobrescrevendo a 
+  animação de scroll (opacity: 0) 
+*/
+#certificates-list-modal .certificate-card {
+    opacity: 1;
+    transform: none;
 }
